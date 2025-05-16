@@ -101,7 +101,7 @@ onMounted(loadJokes)
     <main class="container px-4 py-8 mx-auto">
       <div class="mb-8 text-center">
         <h1 class="mb-4 text-4xl font-bold text-primary-600 dark:text-primary-400">
-          Dad Joke Central
+          Uncle Mike Joke Central
         </h1>
         <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
           Enjoy our collection of dad jokes that will make you laugh, groan, or both.
