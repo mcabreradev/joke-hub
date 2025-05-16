@@ -6,6 +6,10 @@ import Pagination from '@/components/Pagination.vue'
 import JokeFilter from '@/components/JokeFilter.vue'
 import AppHeader from '@/components/AppHeader.vue'
 
+type SortDirection = 'asc' | 'desc'
+type SortBy = 'default' | 'alphabetical' | 'type' | 'length'
+type Category = 'all' | 'general' | 'programming'
+
 const { isDarkMode, toggleDarkMode } = inject('darkMode') as { isDarkMode: any, toggleDarkMode: () => void }
 const jokeStore = useJokeStore()
 
@@ -13,9 +17,9 @@ const isLoading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
 const pageSize = ref(10)
-const selectedCategory = ref('all')
-const sortBy = ref('default')
-const sortDirection = ref('asc')
+const selectedCategory = ref<Category>('all')
+const sortBy = ref<SortBy>('default')
+const sortDirection = ref<SortDirection>('asc')
 
 const loadJokes = async () => {
   isLoading.value = true
@@ -75,12 +79,12 @@ const handlePageChange = (page: number) => {
   currentPage.value = page
 }
 
-const handleFilterChange = (category: string) => {
+const handleFilterChange = (category: Category) => {
   selectedCategory.value = category
   currentPage.value = 1 // Reset to first page when filtering
 }
 
-const handleSortChange = (sort: { by: string, direction: string }) => {
+const handleSortChange = (sort: { by: SortBy, direction: SortDirection }) => {
   sortBy.value = sort.by
   sortDirection.value = sort.direction
   currentPage.value = 1 // Reset to first page when sorting
