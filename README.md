@@ -1,6 +1,6 @@
 # Joke Central 🎭
 
-A modern Vue.js application that serves up a collection of dad jokes, including both general and programming-related humor. Built with Vue 3, TypeScript, and Vite for optimal performance and developer experience.
+A modern Vue.js application that serves up a collection of jokes, including both general and programming-related humor. Built with Vue 3, TypeScript, and Vite for optimal performance and developer experience.
 
 ## ✨ Features
 
@@ -27,8 +27,8 @@ A modern Vue.js application that serves up a collection of dad jokes, including 
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd qubeyond-jokes
+git clone git@github.com:mcabreradev/joke-hub.git
+cd joke-hub
 ```
 
 2. Install dependencies using pnpm:
