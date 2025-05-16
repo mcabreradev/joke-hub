@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, inject, computed } from 'vue'
-import { useJokeStore } from '../stores/jokeStore'
-import JokeList from '../components/JokeList.vue'
-import Pagination from '../components/Pagination.vue'
-import JokeFilter from '../components/JokeFilter.vue'
-import AppHeader from '../components/AppHeader.vue'
+import { useJokeStore } from '@/stores/jokeStore'
+import JokeList from '@/components/JokeList.vue'
+import Pagination from '@/components/Pagination.vue'
+import JokeFilter from '@/components/JokeFilter.vue'
+import AppHeader from '@/components/AppHeader.vue'
 
 const { isDarkMode, toggleDarkMode } = inject('darkMode') as { isDarkMode: any, toggleDarkMode: () => void }
 const jokeStore = useJokeStore()

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { provide, ref } from 'vue'
 import { useColorMode } from '@vueuse/core'
+import '@/style.css'
 
 const colorMode = useColorMode({
   attribute: 'class',
