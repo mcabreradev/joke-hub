@@ -104,11 +104,13 @@ onMounted(loadJokes)
 
     <main class="container px-4 py-8 mx-auto">
       <div class="mb-8 text-center">
-        <h1 class="mb-4 text-4xl font-bold text-primary-600 dark:text-primary-400">
-          Uncle Mike Joke Central
+        <h1 class="mb-4 font-mono text-5xl font-bold text-primary dark:text-primary">
+          Joke Central
+          <span class="text-gray-500 dark:text-gray-400">- Your Daily Dose of Laughter</span>
         </h1>
-        <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-          Enjoy our collection of dad jokes that will make you laugh, groan, or both.
+        <p class="max-w-2xl mx-auto text-sm font-light text-gray-600 dark:text-gray-300">
+          Discover a collection of hilarious jokes from various categories.
+          <br />
           Sort, filter, and rate them to find your favorites!
         </p>
       </div>
@@ -124,7 +126,7 @@ onMounted(loadJokes)
       </div>
 
       <div v-if="isLoading" class="flex justify-center my-12">
-        <div class="w-12 h-12 border-t-2 border-b-2 rounded-full animate-spin border-primary-500"></div>
+        <div class="w-12 h-12 border-t-2 border-b-2 rounded-full animate-spin border-primary"></div>
       </div>
 
       <div v-else-if="error" class="p-4 border-l-4 rounded-md bg-error-100 border-error-500 text-error-700" role="alert">
@@ -167,8 +169,8 @@ onMounted(loadJokes)
 
     <footer class="py-6 mt-12 bg-gray-100 dark:bg-background">
       <div class="container px-4 mx-auto text-center">
-        <p class="text-gray-600 dark:text-gray-400">
-          Using the <a href="https://github.com/15Dkatz/official_joke_api" target="_blank" class="text-primary-500 hover:underline">Official Joke API</a>
+        <p class="font-mono text-gray-600 dark:text-gray-400">
+          Using the <a href="https://github.com/15Dkatz/official_joke_api" target="_blank" class="text-primary hover:underline">Official Joke API</a>
         </p>
         <p class="mt-2 text-sm text-gray-500 dark:text-gray-500">
           Built with Vue 3, Tailwind CSS, and TypeScript

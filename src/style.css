@@ -1,17 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --radius: .35rem;
+    --background: 1 0 0;
+    --foreground: .44 .04 279.33;
+    --card: 1 0 0;
+    --card-foreground: .44 .04 279.33;
+    --popover: .86 .01 268.48;
+    --popover-foreground: .44 .04 279.33;
+    --primary: .55 .25 297.02;
+    --primary-foreground: 1 0 0;
+    --secondary: .86 .01 268.48;
+    --secondary-foreground: .44 .04 279.33;
+    --muted: .91 .01 264.51;
+    --muted-foreground: .55 .03 279.08;
+    --accent: .55 .25 297.02 / 60%;
+    --accent-foreground: 1 0 0;
+    --destructive: .55 .22 19.81;
+    --border: .81 .02 271.2;
+    --input: .86 .01 268.48;
+    --ring: .55 .25 297.02;
 
-    --primary: 222.2 47.4% 11.2%;
+
+    /* --primary: 222.2 47.4% 11.2%;
     --primary-50: 210 40% 98%;
     --primary-100: 210 40% 96%;
     --primary-200: 214 32% 91%;
@@ -22,36 +38,25 @@
     --primary-700: 222 47% 11%;
     --primary-800: 229 84% 5%;
     --primary-900: 228 100% 4%;
-    --primary-950: 229 100% 2%;
-    --primary-foreground: 210 40% 98%;
+    --primary-950: 229 100% 2%; */
+    /* --primary-foreground: 210 40% 98%; */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 215 25% 27%;
-    --radius: 0.5rem;
+    --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+    --font-serif: Georgia, serif;
+    --font-mono: 'Fira Code', monospace;
   }
- 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 40% 98%;
+  .dark {
+    --background: .22 .03 284.06;
+    --foreground: .88 .04 272.28;
+    --card: .24 .03 283.91;
+    --card-foreground: .88 .04 272.28;
+    --popover: .4 .03 280.15;
+    --popover-foreground: .88 .04 272.28;
+    --primary: .79 .12 304.77;
+    --primary-foreground: .24 .03 283.91;
+
     --primary-50: 229 100% 2%;
     --primary-100: 229 84% 5%;
     --primary-200: 222 47% 11%;
@@ -63,23 +68,18 @@
     --primary-800: 210 40% 96%;
     --primary-900: 210 40% 98%;
     --primary-950: 210 40% 99%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
-    
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 215 20.2% 65.1%;
+    /* --primary-foreground: 222.2 47.4% 11.2%; */
+
+    --secondary: .48 .03 278.64;
+    --secondary-foreground: .88 .04 272.28;
+    --muted: .3 .03 276.21;
+    --muted-foreground: .75 .04 273.93;
+    --accent: .79 .12 304.77 / 60%;
+    --accent-foreground: .24 .03 283.91;
+    --destructive: .76 .13 2.76;
+    --border: .32 .03 281.98;
+    --input: .32 .03 281.98;
+    --ring: .79 .12 304.77;
   }
 
   body {
@@ -94,11 +94,11 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply bg-primary text-primary-foreground hover:bg-primary;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary;
   }
 
   .card {

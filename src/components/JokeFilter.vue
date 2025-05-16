@@ -108,7 +108,7 @@ const toggleSortDirection = () => {
 }
 
 .select:focus {
-  @apply outline-none ring-2 ring-primary-500 border-primary-500;
+  @apply outline-none ring-2 ring-primary border-primary;
 }
 
 .btn {

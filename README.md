@@ -1,4 +1,4 @@
-# Uncle Mike Joke Central 🎭
+# Joke Central 🎭
 
 A modern Vue.js application that serves up a collection of dad jokes, including both general and programming-related humor. Built with Vue 3, TypeScript, and Vite for optimal performance and developer experience.
 

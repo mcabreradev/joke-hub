@@ -44,15 +44,15 @@ const categoryClasses = computed(() => {
 const cardClasses = computed(() => {
   return [
     'card p-6 h-full flex flex-col',
-    isHighlighted.value ? 'ring-2 ring-primary-400 transform scale-[1.02]' : '',
-    isFlipped.value ? 'bg-accent-50 dark:bg-accent-900/20' : ''
+    isHighlighted.value ? 'ring-2 ring-primary transform scale-[1.02]' : '',
+    isFlipped.value ? 'bg-accent-50 dark:bg-accent-900' : ''
   ].join(' ')
 })
 
 </script>
 
 <template>
-  <div 
+  <div
     :class="cardClasses"
     @mouseenter="highlight"
     @mouseleave="unhighlight"
@@ -60,29 +60,29 @@ const cardClasses = computed(() => {
     @touchend="unhighlight"
     @touchcancel="unhighlight"
   >
-    <div class="flex justify-between items-start mb-3">
-      <span 
+    <div class="flex items-start justify-between mb-3">
+      <span
         :class="['text-xs font-medium px-2 py-1 rounded-full capitalize', categoryClasses]"
       >
         {{ joke.type }}
       </span>
       <StarRating :value="joke.rating || 0" @update:value="handleRate" />
     </div>
-    
+
     <div class="flex-grow">
-      <div class="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">
+      <div class="mb-3 text-lg font-medium text-gray-800 dark:text-gray-200">
         {{ joke.setup }}
       </div>
-      
-      <div v-if="isFlipped" class="text-lg text-accent-700 dark:text-accent-400 font-medium mt-3 animate-fade-in">
+
+      <div v-if="isFlipped" class="mt-3 text-base font-light text-accent-700 dark:text-accent-400 animate-fade-in">
         {{ joke.punchline }}
       </div>
     </div>
-    
-    <div class="mt-4 flex justify-center">
-      <button 
-        @click="toggleFlip" 
-        class="btn btn-secondary text-sm flex items-center"
+
+    <div class="flex justify-center mt-4">
+      <button
+        @click="toggleFlip"
+        class="flex items-center text-sm btn btn-secondary"
       >
         {{ isFlipped ? 'Hide Answer' : 'Reveal Punchline' }}
       </button>
