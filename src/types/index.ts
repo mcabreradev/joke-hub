@@ -5,3 +5,7 @@ export interface Joke {
   punchline: string;
   rating?: number;
 }
+
+export interface RatingsMap {
+  [key: number]: number
+}

@@ -1,86 +1,125 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
 import { jokeApi } from '@/services/api'
-import { Joke } from '@/types'
+import type { Joke, RatingsMap } from '@/types'
+
+const STORAGE_KEY = 'jokeRatings' as const
 
 export const useJokeStore = defineStore('jokes', () => {
+  // State
   const jokes = ref<Joke[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
-  // Load ratings from localStorage if available
-  const loadRatings = () => {
-    const savedRatings = localStorage.getItem('jokeRatings')
-    if (savedRatings) {
-      const ratingsMap = JSON.parse(savedRatings) as Record<number, number>
+  // Computed
+  const sortedJokes = computed(() => [...jokes.value].sort((a, b) => (b.rating || 0) - (a.rating || 0)))
+  const hasJokes = computed(() => jokes.value.length > 0)
+  const topRatedJokes = computed(() => sortedJokes.value.slice(0, 5))
 
+  // Methods
+  const loadRatings = (): void => {
+    try {
+      const savedRatings = localStorage.getItem(STORAGE_KEY)
+      if (!savedRatings) return
+
+      const ratingsMap = JSON.parse(savedRatings) as RatingsMap
       jokes.value = jokes.value.map(joke => ({
         ...joke,
-        rating: ratingsMap[joke.id] || 0
+        rating: ratingsMap[joke.id] ?? 0
       }))
+    } catch (err) {
+      console.error('Error loading ratings:', err)
+      error.value = 'Failed to load ratings from storage'
     }
   }
 
-  // Save ratings to localStorage
-  const saveRatings = () => {
-    const ratingsMap = jokes.value.reduce((acc, joke) => {
-      if (joke.rating) {
-        acc[joke.id] = joke.rating
-      }
-      return acc
-    }, {} as Record<number, number>)
+  const saveRatings = (): void => {
+    try {
+      const ratingsMap = jokes.value.reduce<RatingsMap>((acc, joke) => {
+        if (joke.rating) {
+          acc[joke.id] = joke.rating
+        }
+        return acc
+      }, {})
 
-    localStorage.setItem('jokeRatings', JSON.stringify(ratingsMap))
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ratingsMap))
+    } catch (err) {
+      console.error('Error saving ratings:', err)
+      error.value = 'Failed to save ratings to storage'
+    }
   }
 
-  // Fetch jokes from the API
-  const fetchJokes = async () => {
+  const generateUniqueId = (): number => {
+    const timestamp = Date.now()
+    const random = Math.floor(Math.random() * 10000)
+    return timestamp + random
+  }
+
+  const fetchJokes = async (): Promise<void> => {
     isLoading.value = true
     error.value = null
-    
+
     try {
-      // We'll use multiple API calls to get a diverse set of jokes
       const [generalResponse, programmingResponse] = await Promise.all([
         jokeApi.getGeneralJokes(),
         jokeApi.getProgrammingJokes()
       ])
-      
-      const allJokes = [...generalResponse.data, ...programmingResponse.data]
 
-      const uniqueJokes = allJokes.map((joke, index) => ({
+      const allJokes = [...generalResponse.data, ...programmingResponse.data]
+      const uniqueJokes = allJokes.map(joke => ({
         ...joke,
-        id: index + Math.floor(Math.random() * 10000)
+        id: generateUniqueId(),
+        rating: 0
       }))
 
       jokes.value = uniqueJokes
-      loadRatings()
-      isLoading.value = false
+      await loadRatings()
     } catch (err) {
       console.error('Error fetching jokes:', err)
       error.value = 'Failed to fetch jokes. Please try again later.'
+    } finally {
       isLoading.value = false
     }
   }
 
-  // Rate a joke
-  const rateJoke = (jokeId: number, rating: number) => {
-    const jokeIndex = jokes.value.findIndex(joke => joke.id === jokeId)
-
-    if (jokeIndex !== -1) {
-      jokes.value[jokeIndex] = {
-        ...jokes.value[jokeIndex],
-        rating
-      }
-
-      saveRatings()
+  const rateJoke = (jokeId: number, rating: number): void => {
+    if (rating < 0 || rating > 5) {
+      console.error('Invalid rating value')
+      return
     }
+
+    const jokeIndex = jokes.value.findIndex(joke => joke.id === jokeId)
+    if (jokeIndex === -1) {
+      console.error('Joke not found')
+      return
+    }
+
+    jokes.value[jokeIndex] = {
+      ...jokes.value[jokeIndex],
+      rating
+    }
+
+    saveRatings()
+  }
+
+  const clearRatings = (): void => {
+    jokes.value = jokes.value.map(joke => ({ ...joke, rating: 0 }))
+    localStorage.removeItem(STORAGE_KEY)
   }
 
   return {
+    // State
     jokes,
     isLoading,
     error,
+    // Computed
+    sortedJokes,
+    hasJokes,
+    topRatedJokes,
+    // Methods
     fetchJokes,
-    rateJoke
+    rateJoke,
+    clearRatings
   }
 })
