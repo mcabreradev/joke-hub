@@ -165,7 +165,7 @@ onMounted(loadJokes)
       </template>
     </main>
 
-    <footer class="py-6 mt-12 bg-gray-100 dark:bg-gray-800">
+    <footer class="py-6 mt-12 bg-gray-100 dark:bg-background">
       <div class="container px-4 mx-auto text-center">
         <p class="text-gray-600 dark:text-gray-400">
           Using the <a href="https://github.com/15Dkatz/official_joke_api" target="_blank" class="text-primary-500 hover:underline">Official Joke API</a>

@@ -16,7 +16,7 @@ const toggleDarkMode = () => {
 </script>
 
 <template>
-  <header class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+  <header class="bg-white dark:bg-background shadow-sm sticky top-0 z-10">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <div class="flex items-center">
         <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">JokeHub</div>

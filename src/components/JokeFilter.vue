@@ -104,7 +104,7 @@ const toggleSortDirection = () => {
 
 <style scoped>
 .select {
-  @apply px-3 py-1.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm text-gray-700 dark:text-gray-300;
+  @apply px-3 py-1.5 bg-white dark:bg-background border border-gray-300 dark:border-gray-700 rounded-md shadow-sm text-gray-700 dark:text-gray-300;
 }
 
 .select:focus {
@@ -116,10 +116,10 @@ const toggleSortDirection = () => {
 }
 
 .btn-secondary {
-  @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-gray-500;
+  @apply bg-gray-100 dark:bg-background text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 focus:ring-gray-500;
 }
 
 .btn-secondary:disabled {
-  @apply opacity-50 cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800;
+  @apply opacity-50 cursor-not-allowed hover:bg-gray-100 dark:hover:bg-background;
 }
 </style>
