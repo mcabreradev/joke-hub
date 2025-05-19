@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import StarRating from './StarRating.vue'
-import { Joke } from '../types'
+import { Joke } from '@/types'
 
 const props = defineProps<{
   joke: Joke

@@ -33,43 +33,43 @@ const setRating = (rating: number) => {
 </script>
 
 <template>
-  <div 
+  <div
     class="flex items-center space-x-1"
     @mouseleave="resetHoverRating"
   >
     <template v-for="star in stars" :key="star">
-      <button 
+      <button
         type="button"
         @click="setRating(star)"
         @mouseenter="setHoverRating(star)"
         class="focus:outline-none"
       >
         <!-- Full star -->
-        <svg 
-          v-if="(hoverRating || props.value) >= star" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24" 
+        <svg
+          v-if="(hoverRating || props.value) >= star"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
           :class="[
-            'w-5 h-5', 
-            hoverRating >= star 
-              ? 'text-accent-400 animate-pulse' 
+            'w-5 h-5',
+            hoverRating >= star
+              ? 'text-accent-400 animate-pulse'
               : 'text-accent-500'
           ]"
           fill="currentColor"
         >
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
-        
+
         <!-- Empty star -->
-        <svg 
-          v-else 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
           class="w-5 h-5 text-gray-400"
-          stroke-width="2" 
-          stroke-linecap="round" 
+          stroke-width="2"
+          stroke-linecap="round"
           stroke-linejoin="round"
         >
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
